@@ -1,7 +1,7 @@
 <?php
 // Configure your Subject Prefix and Recipient here
-$subjectPrefix = '[Contact via website]';
-$emailTo       = '<YOUR_EMAIL_HERE>';
+$subjectPrefix = '[Contato via website]';
+$emailTo       = 'ivan.ramos.santos@gmail.com';
 $errors = array(); // array to hold validation errors
 $data   = array(); // array to pass back data
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $headers .= "X-Originating-IP: " . $_SERVER['SERVER_ADDR'] . PHP_EOL;
         mail($emailTo, "=?utf-8?B?" . base64_encode($subject) . "?=", $body, $headers);
         $data['success'] = true;
-        $data['message'] = 'Congratulations. Your message has been sent successfully';
+        $data['message'] = 'E-mail enviado com sucesso!';
     }
     // return all our data to an AJAX call
     echo json_encode($data);
