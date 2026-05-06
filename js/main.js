@@ -187,4 +187,49 @@
             mobile: false,
         });
     });
+
+    /* Google Forms Integration
+    ==============================*/
+    $('#ms-form-integration').on('submit', function (e) {
+        e.preventDefault();
+        
+        var form = $(this);
+        var submitBtn = form.find('#ms-form-submit');
+        var statusDiv = form.find('#ms-form-status');
+        
+        submitBtn.prop('disabled', true).text('Enviando...');
+        
+        var googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLScxlmkos8BbZpcBEvKgrLb9Q5DJ4jwvEXRASQqWw7I5oGeEzg/formResponse"; 
+
+        var formData = new FormData();
+        
+        // Mapeamento dos campos do Google Forms
+        formData.append("entry.1878859235", form.find('#ms-form-name').val());      // Qual seu nome?
+        formData.append("entry.981058176", form.find('#ms-form-phone').val());      // Contato Whatsapp?
+        formData.append("entry.1160361780", form.find('#ms-form-empresa').val());   // Sua Empresa?
+        formData.append("entry.2093271419", form.find('#ms-form-message').val());   // Descrição da necessidade
+
+        fetch(googleFormUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Necessário para evitar bloqueio de CORS do Google
+            body: formData
+        })
+        .then(function() {
+            statusDiv.removeClass('alert-danger').addClass('alert-success');
+            statusDiv.html('<strong>Sucesso!</strong> Formulário enviado.').slideDown();
+            submitBtn.prop('disabled', false).text('Enviar Formulário');
+            form[0].reset();
+
+            setTimeout(function() {
+                statusDiv.slideUp();
+            }, 5000);
+        })
+        .catch(function(error) {
+            console.error("Erro ao enviar Google Form:", error);
+            statusDiv.removeClass('alert-success').addClass('alert-danger');
+            statusDiv.html('<strong>Erro!</strong> Ocorreu um erro ao enviar.').slideDown();
+            submitBtn.prop('disabled', false).text('Enviar Formulário');
+        });
+    });
+
 })(jQuery);
