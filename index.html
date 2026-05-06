@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/chat.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!--[if lt IE 9]>
@@ -542,6 +543,35 @@
         <script src="js/wow.min.js"></script>
         <!--Main-active-JS-->
         <script src="js/main.js"></script>
+
+        <!-- Gemini Chat Widget -->
+        <div class="gemini-chat-container">
+            <button class="gemini-chat-button" id="gemini-chat-btn">
+                <i class="icofont icofont-chat"></i>
+            </button>
+            
+            <div class="gemini-chat-window" id="gemini-chat-window">
+                <div class="gemini-chat-header">
+                    <h4>Assistente Ivânia Ramos</h4>
+                    <div class="gemini-chat-close" id="gemini-chat-close">
+                        <i class="icofont icofont-close"></i>
+                    </div>
+                </div>
+                
+                <div class="gemini-chat-messages" id="gemini-chat-messages">
+                    <!-- Messages will be injected here -->
+                </div>
+                
+                <form class="gemini-chat-input-area" id="gemini-chat-form">
+                    <input type="text" class="gemini-chat-input" id="gemini-chat-input" placeholder="Digite sua dúvida..." autocomplete="off">
+                    <button type="submit" class="gemini-chat-send">
+                        <i class="icofont icofont-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <script src="js/chat.js"></script>
 </body>
 
 </html>
