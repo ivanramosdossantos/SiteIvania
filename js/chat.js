@@ -3,7 +3,7 @@
  */
 
 // --- CONFIGURATION ---
-const GEMINI_API_KEY = 'AIzaSyDUv7BFD8OcATlJ9imbsbz-CQaM6g936z4';
+const GEMINI_API_KEY = 'AIzaSyAoVVO_5YnYRm8GFoENgroRYwl9Jz7B4vg';
 
 const SYSTEM_INSTRUCTION = `
 Você é o Assistente Virtual da Ivânia Ramos Consultoria e Assessoria. Seu objetivo é ajudar clientes em potencial a entenderem os processos de consultoria.
