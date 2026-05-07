@@ -92,15 +92,25 @@ Diretrizes:
         async function handleBotResponse(userMsg) {
             addTypingIndicator();
 
+            // Preparar as mensagens para a API
+            let messages = [...chatHistory];
+            
+            // Adicionar instrução do sistema como a primeira mensagem se for um novo chat
+            // Usamos o formato de 'user' + 'model' para simular a instrução se o campo direto falhar
+            if (messages.length === 1) { // Só a mensagem do usuário
+                messages = [
+                    { role: "user", parts: [{ text: "INSTRUÇÃO DE SISTEMA: " + SYSTEM_INSTRUCTION }] },
+                    { role: "model", parts: [{ text: "Entendido. Atuarei como o Assistente Virtual da Ivânia Ramos Consultoria seguindo todas as diretrizes." }] },
+                    ...chatHistory
+                ];
+            }
+
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: chatHistory,
-                        system_instruction: {
-                            parts: [{ text: SYSTEM_INSTRUCTION }]
-                        }
+                        contents: messages
                     })
                 });
 
