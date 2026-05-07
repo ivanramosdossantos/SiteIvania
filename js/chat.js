@@ -98,7 +98,7 @@ Diretrizes:
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: chatHistory,
-                        systemInstruction: {
+                        system_instruction: {
                             parts: [{ text: SYSTEM_INSTRUCTION }]
                         }
                     })
